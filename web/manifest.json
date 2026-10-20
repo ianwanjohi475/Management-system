@@ -1,0 +1,35 @@
+{
+    "name": "Shamba. Farm Manager",
+    "short_name": "Shamba",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FAF8F2",
+    "theme_color": "#2F5D1E",
+    "description": "Manage pigs, poultry, eggs and sales on your farm.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
