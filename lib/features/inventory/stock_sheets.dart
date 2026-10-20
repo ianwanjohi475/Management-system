@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/assets.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/phosphor.dart';
 import '../../core/utils/formatters.dart';
@@ -379,8 +380,8 @@ class _StockOutFormState extends State<_StockOutForm> {
             }),
             options: const [
               PickerOption(null, 'General'),
-              PickerOption(TargetType.flock, 'A flock', icon: PhosphorIconsBold.bird),
-              PickerOption(TargetType.pig, 'Pigs', icon: PhosphorIconsBold.piggyBank),
+              PickerOption(TargetType.flock, 'A flock', image: Assets.hen),
+              PickerOption(TargetType.pig, 'Pigs', image: Assets.pig),
             ],
           ),
           if (_targetType == TargetType.flock) ...[
@@ -399,7 +400,7 @@ class _StockOutFormState extends State<_StockOutForm> {
               label: 'Pig / pen',
               value: _target,
               optional: true,
-              icon: PhosphorIconsRegular.piggyBank,
+              icon: PhosphorIconsRegular.tag,
               options: [for (final p in store.activePigs) PickerOption(p.id, p.displayName, subtitle: '${p.tag} · ${p.pen}')],
               onChanged: (v) => setState(() => _target = v),
             ),

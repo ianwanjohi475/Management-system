@@ -481,7 +481,7 @@ class _NewSaleScreenState extends State<NewSaleScreen> {
       if (_product.fromPigs) ...[
         const FieldLabel('Which pigs?'),
         PickerShell(
-          icon: PhosphorIconsRegular.piggyBank,
+          icon: PhosphorIconsRegular.tag,
           hint: 'Tap to select pigs',
           text: _pigIds.isEmpty ? null : _pigIds.map((id) => store.pig(id)?.tag ?? '?').join(', '),
           onTap: _pickPigs,

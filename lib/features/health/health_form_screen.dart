@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/constants/assets.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/phosphor.dart';
 import '../../core/utils/formatters.dart';
@@ -110,8 +110,8 @@ class _HealthFormScreenState extends State<HealthFormScreen> {
                           _target = null;
                         }),
                         options: const [
-                          PickerOption(TargetType.flock, 'A flock', icon: PhosphorIconsBold.bird),
-                          PickerOption(TargetType.pig, 'A pig', icon: PhosphorIconsBold.piggyBank),
+                          PickerOption(TargetType.flock, 'A flock', image: Assets.hen),
+                          PickerOption(TargetType.pig, 'A pig', image: Assets.pig),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -126,7 +126,7 @@ class _HealthFormScreenState extends State<HealthFormScreen> {
                         SelectField<String>(
                           label: 'Pig',
                           value: _target,
-                          icon: PhosphorIconsRegular.piggyBank,
+                          icon: PhosphorIconsRegular.tag,
                           options: [for (final p in store.activePigs) PickerOption(p.id, p.displayName, subtitle: '${p.tag} · ${p.stage.label}')],
                           onChanged: (v) => setState(() => _target = v),
                         ),
@@ -139,11 +139,7 @@ class _HealthFormScreenState extends State<HealthFormScreen> {
                           padding: const EdgeInsets.all(12),
                           child: Row(
                             children: [
-                              IconTile(
-                                icon: _targetType == TargetType.pig ? PhosphorIconsBold.piggyBank : PhosphorIconsBold.bird,
-                                color: AppColors.forest,
-                                size: 40,
-                              ),
+                              Image.asset(_targetType == TargetType.pig ? Assets.pig : Assets.hen, width: 40, height: 40),
                               const SizedBox(width: 12),
                               Text(store.targetName(_targetType, _target!), style: context.text.titleMedium),
                             ],

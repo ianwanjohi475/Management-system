@@ -75,7 +75,8 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       if (store.farm?.keepsPigs ?? true)
                         StatTile(
-                          icon: PhosphorIconsBold.piggyBank,
+                          icon: PhosphorIconsBold.pawPrint,
+                          image: Assets.catPigs,
                           color: AppColors.pinkDeep,
                           value: store.activePigs.length,
                           label: 'Pigs on farm',
@@ -84,7 +85,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       if (store.farm?.keepsPoultry ?? true)
                         StatTile(
-                          icon: PhosphorIconsBold.bird,
+                          icon: PhosphorIconsBold.pawPrint,
+                          image: Assets.catLayers,
                           color: AppColors.lime,
                           value: store.totalBirds,
                           label: 'Birds alive',
@@ -388,8 +390,8 @@ class _Banner extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      (data.dark ? AppColors.forestDark : const Color(0xFFF5B700)).withValues(alpha: 0.92),
-                      (data.dark ? AppColors.forestDark : const Color(0xFFF5B700)).withValues(alpha: 0.0),
+                      (data.dark ? AppColors.forestDeep : const Color(0xFFE9A23B)).withValues(alpha: 0.92),
+                      (data.dark ? AppColors.forestDeep : const Color(0xFFE9A23B)).withValues(alpha: 0.0),
                     ],
                     stops: const [0.35, 0.75],
                   ),
@@ -525,78 +527,22 @@ class _MoneyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profit = revenue - spent;
-    final ratio = revenue + spent == 0 ? 0.5 : revenue / (revenue + spent);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-      child: AppCard(
-        gradient: AppColors.heroGradient,
+      child: MoneySummary(
+        title: '${profit >= 0 ? 'Profit' : 'Loss'} in ${Fmt.monthYear(DateTime.now())}',
+        amount: profit,
+        signed: true,
+        badge: revenue > 0 ? '${(profit / revenue * 100).abs().toStringAsFixed(0)}% margin' : null,
+        split: (revenue, spent),
         onTap: () => go(context, const ExpensesScreen()),
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  'This month',
-                  style: TextStyle(fontFamily: 'Inter', color: Colors.white.withValues(alpha: 0.8), fontSize: 13, fontWeight: FontWeight.w500),
-                ),
-                const Spacer(),
-                StatusPill(
-                  profit >= 0 ? 'Profit' : 'Loss',
-                  color: profit >= 0 ? AppColors.lime : const Color(0xFFFF8A80),
-                  icon: profit >= 0 ? PhosphorIconsBold.trendUp : PhosphorIconsBold.trendDown,
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            CountUp(
-              value: profit,
-              format: (v) => Fmt.money(v),
-              style: const TextStyle(fontFamily: 'Poppins', color: Colors.white, fontSize: 28, fontWeight: FontWeight.w700, letterSpacing: -0.5),
-            ),
-            const SizedBox(height: 14),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: (ratio * 1000).round().clamp(1, 999),
-                    child: Container(height: 8, color: AppColors.lime),
-                  ),
-                  Expanded(
-                    flex: ((1 - ratio) * 1000).round().clamp(1, 999),
-                    child: Container(height: 8, color: AppColors.amber),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-            Row(children: [_legend(AppColors.lime, 'Sales', Fmt.money(revenue)), const Spacer(), _legend(AppColors.amber, 'Costs', Fmt.money(spent))]),
-          ],
-        ),
+        stats: [
+          SummaryStat('Sales', Fmt.money(revenue, compact: true), AppColors.lime),
+          SummaryStat('Costs', Fmt.money(spent, compact: true), AppColors.terracottaLight),
+        ],
       ),
     );
   }
-
-  Widget _legend(Color c, String label, String value) => Row(
-    children: [
-      Container(
-        width: 8,
-        height: 8,
-        decoration: BoxDecoration(color: c, shape: BoxShape.circle),
-      ),
-      const SizedBox(width: 6),
-      Text(
-        '$label  ',
-        style: TextStyle(fontFamily: 'Inter', color: Colors.white.withValues(alpha: 0.75), fontSize: 12),
-      ),
-      Text(
-        value,
-        style: const TextStyle(fontFamily: 'Inter', color: Colors.white, fontSize: 12.5, fontWeight: FontWeight.w700),
-      ),
-    ],
-  );
 }
 
 class _GetStarted extends StatelessWidget {

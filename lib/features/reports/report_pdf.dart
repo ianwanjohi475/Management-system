@@ -8,8 +8,8 @@ import '../../data/models/models.dart';
 import '../../state/farm_store.dart';
 import '../sales/receipt_pdf.dart';
 
-const _green = PdfColor.fromInt(0xFF2F5D1E);
-const _tint = PdfColor.fromInt(0xFFE6F2D6);
+const _green = PdfColor.fromInt(0xFFC8553D);
+const _tint = PdfColor.fromInt(0xFFF6E5DE);
 const _muted = PdfColor.fromInt(0xFF6B7066);
 
 /// A printable farm performance report for the chosen period.

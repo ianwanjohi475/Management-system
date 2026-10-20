@@ -10,7 +10,7 @@ import '../../core/errors/app_exception.dart';
 import '../../core/utils/formatters.dart';
 import '../../data/models/models.dart';
 
-const _green = PdfColor.fromInt(0xFF2F5D1E);
+const _green = PdfColor.fromInt(0xFFC8553D);
 const _amber = PdfColor.fromInt(0xFFF5B700);
 const _muted = PdfColor.fromInt(0xFF6B7066);
 

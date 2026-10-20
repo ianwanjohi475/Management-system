@@ -38,7 +38,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     inkSoft: AppColors.inkSoft,
     inkMuted: AppColors.inkMuted,
     brandTint: AppColors.limeSoft,
-    shadow: Color(0x14243A16),
+    shadow: Color(0x143B2A20),
   );
 
   static const dark = AppPalette(
@@ -49,7 +49,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     ink: AppColors.nightInk,
     inkSoft: AppColors.nightInkSoft,
     inkMuted: Color(0xFF7D8A73),
-    brandTint: Color(0xFF243A18),
+    brandTint: Color(0xFF3A241C),
     shadow: Color(0x40000000),
   );
 
@@ -92,10 +92,10 @@ abstract final class AppTheme {
 
     final scheme = ColorScheme(
       brightness: brightness,
-      primary: isDark ? AppColors.lime : AppColors.forest,
+      primary: isDark ? AppColors.terracottaLight : AppColors.forest,
       onPrimary: isDark ? AppColors.forestDeep : Colors.white,
       primaryContainer: p.brandTint,
-      onPrimaryContainer: isDark ? AppColors.lime : AppColors.forestDark,
+      onPrimaryContainer: isDark ? AppColors.terracottaLight : AppColors.forestDark,
       secondary: AppColors.amber,
       onSecondary: AppColors.ink,
       secondaryContainer: isDark ? const Color(0xFF3A2F0A) : AppColors.amberSoft,
@@ -172,7 +172,7 @@ abstract final class AppTheme {
       dividerTheme: DividerThemeData(color: p.border, thickness: 1, space: 1),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: isDark ? p.cardAlt : const Color(0xFFF5F3EC),
+        fillColor: isDark ? p.cardAlt : const Color(0xFFF5EFE8),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         hintStyle: text.bodyMedium?.copyWith(color: p.inkMuted),
         labelStyle: text.bodyMedium,

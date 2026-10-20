@@ -235,7 +235,7 @@ class PickerShell extends StatelessWidget {
               height: 56,
               padding: const EdgeInsets.symmetric(horizontal: 14),
               decoration: BoxDecoration(
-                color: context.isDark ? p.cardAlt : const Color(0xFFF5F3EC),
+                color: context.isDark ? p.cardAlt : const Color(0xFFF5EFE8),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: hasError ? AppColors.danger : Colors.transparent, width: 1.2),
               ),
@@ -466,7 +466,7 @@ class ChoicePills<T> extends StatelessWidget {
           height: 48,
           padding: const EdgeInsets.symmetric(horizontal: 14),
           decoration: BoxDecoration(
-            color: sel ? scheme.primary : (context.isDark ? p.cardAlt : const Color(0xFFF5F3EC)),
+            color: sel ? scheme.primary : (context.isDark ? p.cardAlt : const Color(0xFFF5EFE8)),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: sel ? scheme.primary : Colors.transparent),
           ),
@@ -474,7 +474,13 @@ class ChoicePills<T> extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (o.icon != null) ...[Icon(o.icon, size: 18, color: sel ? scheme.onPrimary : (o.color ?? p.inkSoft)), const SizedBox(width: 8)],
+              if (o.image != null) ...[
+                Image.asset(o.image!, width: 24, height: 24),
+                const SizedBox(width: 8),
+              ] else if (o.icon != null) ...[
+                Icon(o.icon, size: 18, color: sel ? scheme.onPrimary : (o.color ?? p.inkSoft)),
+                const SizedBox(width: 8),
+              ],
               Flexible(
                 child: Text(
                   o.label,
@@ -521,7 +527,7 @@ class Stepper2 extends StatelessWidget {
         FieldLabel(label),
         Container(
           height: 56,
-          decoration: BoxDecoration(color: context.isDark ? p.cardAlt : const Color(0xFFF5F3EC), borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: context.isDark ? p.cardAlt : const Color(0xFFF5EFE8), borderRadius: BorderRadius.circular(16)),
           child: Row(
             children: [
               IconButton(tooltip: 'Decrease', onPressed: value > min ? () => onChanged(value - 1) : null, icon: const Icon(PhosphorIconsBold.minus, size: 18)),

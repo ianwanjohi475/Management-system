@@ -85,7 +85,7 @@ class _WeightFormState extends State<_WeightForm> {
             SelectField<String>(
               label: 'Pig',
               value: _pig,
-              icon: PhosphorIconsRegular.piggyBank,
+              icon: PhosphorIconsRegular.tag,
               options: _pigOptions(store.activePigs),
               onChanged: (v) => setState(() => _pig = v),
             ),

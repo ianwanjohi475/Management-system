@@ -45,7 +45,6 @@ abstract final class PhosphorIconsRegular {
   static const package = IconData(0xe390, fontFamily: 'PhosphorRegular');
   static const pawPrint = IconData(0xe648, fontFamily: 'PhosphorRegular');
   static const phone = IconData(0xe3b8, fontFamily: 'PhosphorRegular');
-  static const piggyBank = IconData(0xea04, fontFamily: 'PhosphorRegular');
   static const receipt = IconData(0xe3ec, fontFamily: 'PhosphorRegular');
   static const repeat = IconData(0xe3f6, fontFamily: 'PhosphorRegular');
   static const ruler = IconData(0xe6b8, fontFamily: 'PhosphorRegular');
@@ -63,7 +62,6 @@ abstract final class PhosphorIconsBold {
   static const arrowClockwise = IconData(0xe036, fontFamily: 'PhosphorBold');
   static const arrowCounterClockwise = IconData(0xe038, fontFamily: 'PhosphorBold');
   static const arrowDown = IconData(0xe03e, fontFamily: 'PhosphorBold');
-  static const arrowDownLeft = IconData(0xe040, fontFamily: 'PhosphorBold');
   static const arrowRight = IconData(0xe06c, fontFamily: 'PhosphorBold');
   static const arrowUp = IconData(0xe08e, fontFamily: 'PhosphorBold');
   static const arrowUpRight = IconData(0xe092, fontFamily: 'PhosphorBold');
@@ -73,15 +71,12 @@ abstract final class PhosphorIconsBold {
   static const barn = IconData(0xec72, fontFamily: 'PhosphorBold');
   static const basket = IconData(0xe964, fontFamily: 'PhosphorBold');
   static const bell = IconData(0xe0ce, fontFamily: 'PhosphorBold');
-  static const bird = IconData(0xe72c, fontFamily: 'PhosphorBold');
   static const bug = IconData(0xe5f4, fontFamily: 'PhosphorBold');
   static const cake = IconData(0xe780, fontFamily: 'PhosphorBold');
-  static const calendarCheck = IconData(0xe712, fontFamily: 'PhosphorBold');
   static const camera = IconData(0xe10e, fontFamily: 'PhosphorBold');
   static const caretLeft = IconData(0xe138, fontFamily: 'PhosphorBold');
   static const caretRight = IconData(0xe13a, fontFamily: 'PhosphorBold');
   static const chartBar = IconData(0xe150, fontFamily: 'PhosphorBold');
-  static const chartLineUp = IconData(0xe156, fontFamily: 'PhosphorBold');
   static const chatText = IconData(0xe17a, fontFamily: 'PhosphorBold');
   static const check = IconData(0xe182, fontFamily: 'PhosphorBold');
   static const checkCircle = IconData(0xe184, fontFamily: 'PhosphorBold');
@@ -116,9 +111,9 @@ abstract final class PhosphorIconsBold {
   static const money = IconData(0xe588, fontFamily: 'PhosphorBold');
   static const moon = IconData(0xe330, fontFamily: 'PhosphorBold');
   static const package = IconData(0xe390, fontFamily: 'PhosphorBold');
+  static const pawPrint = IconData(0xe648, fontFamily: 'PhosphorBold');
   static const pencilSimple = IconData(0xe3b4, fontFamily: 'PhosphorBold');
   static const phone = IconData(0xe3b8, fontFamily: 'PhosphorBold');
-  static const piggyBank = IconData(0xea04, fontFamily: 'PhosphorBold');
   static const pill = IconData(0xe700, fontFamily: 'PhosphorBold');
   static const plant = IconData(0xebae, fontFamily: 'PhosphorBold');
   static const plus = IconData(0xe3d4, fontFamily: 'PhosphorBold');

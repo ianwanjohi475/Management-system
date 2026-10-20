@@ -87,36 +87,19 @@ class _SalesScreenState extends State<SalesScreen> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-                child: AppCard(
-                  gradient: AppColors.heroGradient,
-                  padding: const EdgeInsets.all(18),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(switch (_period) {
-                        _Period.today => 'Sales today',
-                        _Period.week => 'Last 7 days',
-                        _Period.month => 'Sales in ${Fmt.monthYear(DateTime.now())}',
-                        _Period.all => 'All-time sales',
-                      }, style: TextStyle(fontFamily: 'Inter', color: Colors.white.withValues(alpha: 0.8), fontSize: 13)),
-                      const SizedBox(height: 4),
-                      CountUp(
-                        value: revenue,
-                        format: (v) => Fmt.money(v),
-                        style: const TextStyle(fontFamily: 'Poppins', color: Colors.white, fontSize: 28, fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 14),
-                      Row(
-                        children: [
-                          _Mini(label: 'Collected', value: Fmt.money(collected, compact: true), icon: PhosphorIconsBold.checkCircle, color: AppColors.lime),
-                          const SizedBox(width: 10),
-                          _Mini(label: 'Owed to you', value: Fmt.money(store.totalOwed, compact: true), icon: PhosphorIconsBold.clock, color: AppColors.amber),
-                          const SizedBox(width: 10),
-                          _Mini(label: 'Receipts', value: '${inRange.length}', icon: PhosphorIconsBold.receipt, color: Colors.white),
-                        ],
-                      ),
-                    ],
-                  ),
+                child: MoneySummary(
+                  title: switch (_period) {
+                    _Period.today => 'Sales today',
+                    _Period.week => 'Sales · last 7 days',
+                    _Period.month => 'Sales in ${Fmt.monthYear(DateTime.now())}',
+                    _Period.all => 'All-time sales',
+                  },
+                  amount: revenue,
+                  badge: '${inRange.length} receipts',
+                  stats: [
+                    SummaryStat('Collected', Fmt.money(collected, compact: true), AppColors.lime),
+                    SummaryStat('Still owed', Fmt.money(store.totalOwed, compact: true), AppColors.amber),
+                  ],
                 ),
               ),
             ),
@@ -261,41 +244,4 @@ class _SalesScreenState extends State<SalesScreen> {
       ),
     );
   }
-}
-
-class _Mini extends StatelessWidget {
-  const _Mini({required this.label, required this.value, required this.icon, required this.color});
-  final String label;
-  final String value;
-  final IconData icon;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) => Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(14)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, size: 16, color: color),
-          const SizedBox(height: 6),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerLeft,
-            child: Text(
-              value,
-              style: const TextStyle(fontFamily: 'Inter', color: Colors.white, fontWeight: FontWeight.w700, fontSize: 13.5),
-            ),
-          ),
-          Text(
-            label,
-            style: TextStyle(fontFamily: 'Inter', color: Colors.white.withValues(alpha: 0.7), fontSize: 10.5),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-    ),
-  );
 }

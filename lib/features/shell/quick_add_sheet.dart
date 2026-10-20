@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/assets.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/phosphor.dart';
@@ -17,8 +18,9 @@ import '../sales/new_sale_screen.dart';
 import '../tasks/task_sheet.dart';
 
 class _Action {
-  const _Action(this.icon, this.label, this.color, this.run);
+  const _Action(this.icon, this.label, this.color, this.run, {this.image});
   final IconData icon;
+  final String? image;
   final String label;
   final Color color;
   final void Function(BuildContext) run;
@@ -34,8 +36,8 @@ Future<void> showQuickAdd(BuildContext context) {
   final actions = <_Action>[
     _Action(PhosphorIconsBold.receipt, 'New sale', AppColors.forest, (c) => go(c, const NewSaleScreen())),
     if (layers) _Action(PhosphorIconsBold.egg, 'Collect eggs', AppColors.amber, (c) => showEggSheet(c)),
-    if (pigs) _Action(PhosphorIconsBold.piggyBank, 'Add pig', AppColors.pinkDeep, (c) => go(c, const PigFormScreen())),
-    if (birds) _Action(PhosphorIconsBold.bird, 'New flock', AppColors.lime, (c) => go(c, const FlockFormScreen())),
+    if (pigs) _Action(PhosphorIconsBold.pawPrint, 'Add pig', AppColors.pinkDeep, (c) => go(c, const PigFormScreen()), image: Assets.pig),
+    if (birds) _Action(PhosphorIconsBold.pawPrint, 'New flock', AppColors.lime, (c) => go(c, const FlockFormScreen()), image: Assets.hen),
     if (pigs) _Action(PhosphorIconsBold.scales, 'Weigh pig', AppColors.info, (c) => showWeightSheet(c)),
     if (pigs) _Action(PhosphorIconsBold.heart, 'Pig service', AppColors.pink, (c) => showServiceSheet(c)),
     if (birds) _Action(PhosphorIconsBold.skull, 'Bird deaths', AppColors.danger, (c) => showMortalitySheet(c)),
@@ -82,7 +84,7 @@ Future<void> showQuickAdd(BuildContext context) {
                         color: a.color.withValues(alpha: sheet.isDark ? 0.2 : 0.12),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(a.icon, color: a.color, size: 26),
+                      child: a.image != null ? Padding(padding: const EdgeInsets.all(7), child: Image.asset(a.image!)) : Icon(a.icon, color: a.color, size: 26),
                     ),
                     const SizedBox(height: 8),
                     Text(

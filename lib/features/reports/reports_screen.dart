@@ -140,40 +140,17 @@ class _ReportsScreenState extends State<ReportsScreen> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-                child: AppCard(
-                  gradient: AppColors.heroGradient,
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            profit >= 0 ? 'Net profit' : 'Net loss',
-                            style: TextStyle(fontFamily: 'Inter', color: Colors.white.withValues(alpha: 0.8), fontSize: 13),
-                          ),
-                          const Spacer(),
-                          StatusPill('${margin.toStringAsFixed(0)}% margin', color: profit >= 0 ? AppColors.lime : const Color(0xFFFF8A80)),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      CountUp(
-                        value: profit,
-                        format: (v) => Fmt.money(v),
-                        style: const TextStyle(fontFamily: 'Poppins', color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          _HeroStat(label: 'Sales', value: Fmt.money(revenue, compact: true), icon: PhosphorIconsBold.arrowDownLeft, color: AppColors.lime),
-                          const SizedBox(width: 10),
-                          _HeroStat(label: 'Costs', value: Fmt.money(costs, compact: true), icon: PhosphorIconsBold.arrowUpRight, color: AppColors.amber),
-                          const SizedBox(width: 10),
-                          _HeroStat(label: 'Owed', value: Fmt.money(store.totalOwed, compact: true), icon: PhosphorIconsBold.clock, color: AppColors.pink),
-                        ],
-                      ),
-                    ],
-                  ),
+                child: MoneySummary(
+                  title: profit >= 0 ? 'Net profit · $_label' : 'Net loss · $_label',
+                  amount: profit,
+                  signed: true,
+                  badge: '${margin.abs().toStringAsFixed(0)}% margin',
+                  split: (revenue, costs),
+                  stats: [
+                    SummaryStat('Sales', Fmt.money(revenue, compact: true), AppColors.lime),
+                    SummaryStat('Costs', Fmt.money(costs, compact: true), AppColors.terracottaLight),
+                    SummaryStat('Owed to you', Fmt.money(store.totalOwed, compact: true), AppColors.amber),
+                  ],
                 ).enter(0),
               ),
             ),
@@ -187,11 +164,11 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   padding: const EdgeInsets.fromLTRB(8, 18, 16, 10),
                   child: Column(
                     children: [
-                      DualBarChart(points: _cashflow(store), color1: AppColors.forest, color2: AppColors.amber),
+                      DualBarChart(points: _cashflow(store), color1: AppColors.sageDeep, color2: AppColors.forest),
                       const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [_legend(context, AppColors.forest, 'Sales'), const SizedBox(width: 18), _legend(context, AppColors.amber, 'Costs')],
+                        children: [_legend(context, AppColors.sageDeep, 'Sales'), const SizedBox(width: 18), _legend(context, AppColors.forest, 'Costs')],
                       ),
                     ],
                   ),
@@ -241,7 +218,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                   child: Column(
                     children: [
-                      InfoRow(label: 'Active pigs', value: '${store.activePigs.length}', icon: PhosphorIconsRegular.piggyBank, bold: true),
+                      InfoRow(label: 'Active pigs', value: '${store.activePigs.length}', icon: PhosphorIconsRegular.pawPrint, bold: true),
                       for (final e in store.pigsByStage.entries) InfoRow(label: '   ${e.key.label}', value: '${e.value}'),
                       const Divider(),
                       InfoRow(label: 'Birds alive', value: Fmt.number(store.totalBirds), icon: PhosphorIconsRegular.bird, bold: true),
@@ -332,41 +309,6 @@ class _ReportsScreenState extends State<ReportsScreen> {
       const SizedBox(width: 6),
       Text(l, style: context.text.labelMedium),
     ],
-  );
-}
-
-class _HeroStat extends StatelessWidget {
-  const _HeroStat({required this.label, required this.value, required this.icon, required this.color});
-  final String label;
-  final String value;
-  final IconData icon;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) => Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(14)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, size: 16, color: color),
-          const SizedBox(height: 6),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerLeft,
-            child: Text(
-              value,
-              style: const TextStyle(fontFamily: 'Inter', color: Colors.white, fontWeight: FontWeight.w700, fontSize: 13.5),
-            ),
-          ),
-          Text(
-            label,
-            style: TextStyle(fontFamily: 'Inter', color: Colors.white.withValues(alpha: 0.7), fontSize: 10.5),
-          ),
-        ],
-      ),
-    ),
   );
 }
 

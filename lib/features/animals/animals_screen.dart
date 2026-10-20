@@ -84,11 +84,25 @@ class _AnimalsScreenState extends State<AnimalsScreen> with SingleTickerProvider
                 tabs: const [
                   Tab(
                     height: 44,
-                    child: Row(mainAxisSize: MainAxisSize.min, children: [Icon(PhosphorIconsBold.piggyBank, size: 18), SizedBox(width: 8), Text('Pigs')]),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image(image: AssetImage(Assets.pig), width: 26, height: 26),
+                        SizedBox(width: 8),
+                        Text('Pigs'),
+                      ],
+                    ),
                   ),
                   Tab(
                     height: 44,
-                    child: Row(mainAxisSize: MainAxisSize.min, children: [Icon(PhosphorIconsBold.bird, size: 18), SizedBox(width: 8), Text('Poultry')]),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image(image: AssetImage(Assets.hen), width: 24, height: 24),
+                        SizedBox(width: 8),
+                        Text('Poultry'),
+                      ],
+                    ),
                   ),
                 ],
               ),

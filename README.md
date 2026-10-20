@@ -34,7 +34,7 @@ Splash · Onboarding (3) · Login · Sign up · Forgot password · Farm setup (2
 
 ## Design
 
-- Brand palette: farm green `#2F5D1E`, lime `#8BC34A`, egg-yolk amber `#F5B700`, pig pink `#F2A7A0`, warm cream `#FAF8F2` — with a full dark theme.
+- Brand palette (earthy): terracotta `#C8553D` for actions, soil brown `#3B2A20` for summary cards, warm cream `#FBF7F2` background, sage `#9CAF88` for growth/sales and amber `#E9A23B` for eggs, with a warm-brown dark theme.
 - Typography: **Poppins** (headings) and **Inter** (body), bundled so the app looks right offline.
 - Icons: **Phosphor** (regular, bold and fill weights), bundled as fonts in `lib/core/theme/phosphor.dart`.
 - Custom illustrations in `assets/images/` (characters, products, categories, empty states, banners). The farmer, pig, hens and egg are separate layers so they can be animated in code.

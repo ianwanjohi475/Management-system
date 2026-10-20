@@ -105,7 +105,8 @@ class FlockDetailScreen extends StatelessWidget {
                   childAspectRatio: 1.3,
                   children: [
                     StatTile(
-                      icon: PhosphorIconsBold.bird,
+                      icon: PhosphorIconsBold.pawPrint,
+                      image: f.type.image,
                       color: AppColors.forest,
                       value: alive,
                       label: 'Birds alive',
